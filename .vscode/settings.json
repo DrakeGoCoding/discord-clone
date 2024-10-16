@@ -1,0 +1,23 @@
+{
+  "editor.fontSize": 13,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "files.trimFinalNewlines": true,
+  "files.associations": {
+    "*.module.css": "postcss"
+  },
+  "prettier.configPath": ".prettierrc",
+  "cssVariables.lookupFiles": ["*/.css", "*/.scss", "*/.sass", "*/.less"],
+  "cSpell.words": [
+    "clsx",
+    "lucide",
+    "nextjs",
+    "sonner",
+    "tailwindcss",
+    "tanstack",
+    "usehooks",
+    "zustand"
+  ]
+}
