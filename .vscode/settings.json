@@ -12,12 +12,15 @@
   "cssVariables.lookupFiles": ["*/.css", "*/.scss", "*/.sass", "*/.less"],
   "cSpell.words": [
     "clsx",
+    "hookform",
     "lucide",
     "nextjs",
     "sonner",
     "tailwindcss",
     "tanstack",
+    "uploadthing",
     "usehooks",
+    "utfs",
     "zustand"
   ]
 }
