@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle
 } from '@/components/ui/dialog';
@@ -53,6 +54,9 @@ export const InviteModal = () => {
           <DialogTitle className="text-center text-2xl font-bold">
             Invite Friends
           </DialogTitle>
+          <DialogDescription className="text-center text-zinc-500">
+            Share this link with your friends so they can join your server.
+          </DialogDescription>
         </DialogHeader>
         <div className="p-6">
           <Label className="text-xs font-bold uppercase text-zinc-500 dark:text-secondary/70">

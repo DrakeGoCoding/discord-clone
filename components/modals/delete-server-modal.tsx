@@ -29,8 +29,8 @@ export const DeleteServerModal = () => {
       setIsLoading(true);
       await axios.delete(`/api/servers/${server?.id}`);
       onClose();
-      router.refresh();
       router.push('/');
+      router.refresh();
     } catch (error) {
       console.log(error);
     } finally {
@@ -46,7 +46,8 @@ export const DeleteServerModal = () => {
             Delete Server
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
-            Are you sure you want to do this?{' '}
+            Are you sure you want to do this?
+            <br />
             <span className="font-semibold text-indigo-500">
               {server?.name}
             </span>{' '}
