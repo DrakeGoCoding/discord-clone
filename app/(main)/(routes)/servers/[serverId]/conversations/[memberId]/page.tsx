@@ -56,6 +56,7 @@ export default async function MemberIdPage({ params }: MemberIdPageProps) {
         serverId={params.serverId}
         type="conversation"
       />
+      <div className="flex-1">Messages</div>
     </div>
   );
 }
