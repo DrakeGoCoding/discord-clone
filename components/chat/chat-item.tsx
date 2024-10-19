@@ -17,6 +17,7 @@ import { UserAvatar } from '@/components/user-avatar';
 import { useModal } from '@/hooks/use-modal-store';
 import { cn } from '@/lib/utils';
 import { type MemberWithProfile } from '@/types';
+import { useParams, useRouter } from 'next/navigation';
 import { ChatFile } from './chat-file';
 
 interface ChatItemProps {
@@ -33,9 +34,9 @@ interface ChatItemProps {
 }
 
 const roleIconMap = {
-  [MemberRole.ADMIN]: <ShieldAlert className="mr-2 h-4 w-4 text-rose-500" />,
+  [MemberRole.ADMIN]: <ShieldAlert className="ml-2 h-4 w-4 text-rose-500" />,
   [MemberRole.MODERATOR]: (
-    <ShieldCheck className="mr-2 h-4 w-4 text-indigo-500" />
+    <ShieldCheck className="ml-2 h-4 w-4 text-indigo-500" />
   ),
   [MemberRole.GUEST]: null
 };
@@ -56,7 +57,16 @@ export const ChatItem = ({
   socketUrl,
   socketQuery
 }: ChatItemProps) => {
+  const router = useRouter();
+  const params = useParams();
   const { onOpen } = useModal();
+
+  const onMemberClick = () => {
+    if (member.id === currentMember.id) {
+      return;
+    }
+    router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
+  };
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -114,13 +124,19 @@ export const ChatItem = ({
   return (
     <div className="group relative flex w-full items-center p-4 transition hover:bg-black/5">
       <div className="group flex w-full items-start gap-x-2">
-        <div className="cursor-pointer transition hover:drop-shadow-md">
+        <div
+          className="cursor-pointer transition hover:drop-shadow-md"
+          onClick={onMemberClick}
+        >
           <UserAvatar src={member.profile.imageUrl} />
         </div>
         <div className="flex w-full flex-col">
           <div className="flex items-center gap-x-2">
             <div className="flex items-center">
-              <p className="cursor-pointer text-sm font-semibold hover:underline">
+              <p
+                className="cursor-pointer text-sm font-semibold hover:underline"
+                onClick={onMemberClick}
+              >
                 {member.profile.name}
               </p>
               <ActionTooltip label={member.role}>
