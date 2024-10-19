@@ -25,7 +25,6 @@ export default async function handler(
     }
 
     const { messageId, serverId, channelId } = req.query;
-    const { content } = req.body;
 
     if (!serverId) {
       return res.status(400).json({
@@ -42,12 +41,6 @@ export default async function handler(
     if (!messageId) {
       return res.status(400).json({
         error: 'Message ID missing'
-      });
-    }
-
-    if (!content) {
-      return res.status(400).json({
-        error: 'Content missing'
       });
     }
 
@@ -147,6 +140,14 @@ export default async function handler(
       if (!isMessageOwner) {
         return res.status(401).json({
           error: 'Unauthorized'
+        });
+      }
+
+      const { content } = req.body;
+
+      if (!content) {
+        return res.status(400).json({
+          error: 'Content missing'
         });
       }
 

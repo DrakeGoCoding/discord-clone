@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { UserAvatar } from '@/components/user-avatar';
+import { useModal } from '@/hooks/use-modal-store';
 import { cn } from '@/lib/utils';
 import { type MemberWithProfile } from '@/types';
 import { ChatFile } from './chat-file';
@@ -55,14 +56,14 @@ export const ChatItem = ({
   socketUrl,
   socketQuery
 }: ChatItemProps) => {
+  const { onOpen } = useModal();
+
   const [isEditing, setIsEditing] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape' || event.keyCode === 27) {
         setIsEditing(false);
-        setIsDeleting(false);
       }
     };
 
@@ -109,8 +110,6 @@ export const ChatItem = ({
   const isOwner = member.id === currentMember.id;
   const canDeleteMessage = (isModerator || isOwner) && !deleted;
   const canEditMessage = !deleted && isOwner && !fileUrl;
-  const isImage = fileUrl && false;
-  const isPDF = fileUrl && true;
 
   return (
     <div className="group relative flex w-full items-center p-4 transition hover:bg-black/5">
@@ -195,7 +194,15 @@ export const ChatItem = ({
             </ActionTooltip>
           )}
           <ActionTooltip label="Delete">
-            <Trash className="ml-auto h-4 w-4 cursor-pointer text-zinc-500 transition hover:text-zinc-600 dark:hover:text-zinc-300" />
+            <Trash
+              className="ml-auto h-4 w-4 cursor-pointer text-zinc-500 transition hover:text-zinc-600 dark:hover:text-zinc-300"
+              onClick={() =>
+                onOpen('deleteMessage', {
+                  apiUrl: `${socketUrl}/${id}`,
+                  query: socketQuery
+                })
+              }
+            />
           </ActionTooltip>
         </div>
       )}
