@@ -12,7 +12,9 @@
   "cssVariables.lookupFiles": ["*/.css", "*/.scss", "*/.sass", "*/.less"],
   "cSpell.words": [
     "clsx",
+    "cmdk",
     "hookform",
+    "livekit",
     "lucide",
     "nextjs",
     "sonner",
