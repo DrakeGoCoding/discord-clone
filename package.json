@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write ./app/**/*.{js,jsx,ts,tsx,css} ./components ./lib"
+    "prettier": "prettier --write ./app ./components ./hooks ./lib ./pages"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.7.3",
